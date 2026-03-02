@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rulefit"
+version = "0.3.0"
+description = "RuleFit algorithm"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+  { name = "Christoph Molnar", email = "christoph.molnar@gmail.com" }
+]
+dependencies = [
+  "numpy>=1.22",
+  "pandas>=1.5",
+  "scikit-learn>=1.8"
+]
+
+[tool.setuptools]
+packages = ["rulefit"]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    # LassoCV tests many alpha values during cross-validation; non-convergence
+    # at individual alphas is expected and does not affect the final model.
+    "ignore::sklearn.exceptions.ConvergenceWarning",
+]

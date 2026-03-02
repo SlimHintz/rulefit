@@ -1,0 +1,13 @@
+name: rulefit
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - numpy>=1.22
+  - pandas>=1.5
+  - scikit-learn>=1.8
+  - pytest>=7.0
+  - pip
+  - pip:
+      - -e .

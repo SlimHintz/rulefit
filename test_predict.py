@@ -9,7 +9,7 @@ boston_data = pd.read_csv("boston.csv", index_col=0)
 y = boston_data.medv.values
 X = boston_data.drop("medv", axis=1)
 features = X.columns
-X = X.as_matrix()
+X = X.to_numpy()
 
 y_class = y.copy()
 y_class[y_class < 21] = 0
@@ -34,4 +34,3 @@ assert np.max(y_proba) <= 1
 
 #test that probabilities match actual predictions
 np.testing.assert_array_equal(np.rint(np.array(y_proba[:,1])), y_pred)
-

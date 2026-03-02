@@ -39,7 +39,7 @@ boston_data = pd.read_csv("boston.csv", index_col=0)
 y = boston_data.medv.values
 X = boston_data.drop("medv", axis=1)
 features = X.columns
-X = X.as_matrix()
+X = X.to_numpy()
 
 rf = RuleFit()
 rf.fit(X, y, feature_names=features)
@@ -55,6 +55,20 @@ rf = RuleFit(gb)
 
 rf.fit(X, y, feature_names=features)
 
+```
+
+You can also choose the default internal tree family when you do not pass a
+custom `tree_generator`:
+
+```python
+rf = RuleFit(default_tree_generator="gradient_boosting")
+# or: RuleFit(default_tree_generator="random_forest")
+```
+
+You can benchmark both methods:
+
+```bash
+python benchmark_tree_generators.py --reg-samples 3000 --clf-samples 3000
 ```
 
 ### Predict
